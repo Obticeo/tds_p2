@@ -19,8 +19,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-UPLOAD_DIR = "uploads"
+UPLOAD_DIR = "/tmp"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
+@app.get("/")
+def read_root():
+    return {"message": "Hello from Vercel!"}
 
 @app.post("/api")
 async def analyze(request: Request):
